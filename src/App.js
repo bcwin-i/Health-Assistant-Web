@@ -1,21 +1,15 @@
-import { makeStyles } from "@mui/styles";
-
 //Local imports
 import "./App.css";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    minHeight: "100vh",
-    backgroundImage: `url(${process.env.PUBLIC_URL + "/assets/background.jpg"})`,
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover"
-  },
-}));
+import { LandinPageCover } from "./utils/styles";
+import background from "./assets/background.jpg"
+import Header from "./components/Welcome/Header";
+import IntroSection from "./components/Welcome/IntroSection";
 
 function App() {
-  const styles = useStyles();
-
-  return <div className={styles.root}></div>;
+  return <LandinPageCover background={background}>
+    <Header/>
+    <IntroSection/>
+  </LandinPageCover>;
 }
 
 export default App;
