@@ -2,6 +2,7 @@ import styled from "styled-components";
 // import {Menu2} from "@styled-icons/evaicons-solid/Menu2"
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { BiChevronRight } from "react-icons/bi";
+import {FiUser, FiUserPlus} from "react-icons/fi"
 
 import background from "../assets/background.jpg";
 
@@ -39,20 +40,68 @@ export const TextLogo = styled.h1`
   cursor: pointer;
 `;
 
+export const NavigationButtonContainer = styled.button`
+  height: fit-content;
+  width: fit-content;
+  border: none;
+  background: none;
+`;
+
 export const NavigationButton = styled(HiOutlineMenuAlt3)`
   width: 2rem;
   height: 2rem;
   color: ${colors.secondary};
   cursor: pointer;
-  -webkit-transition: color 1s ease-out;
-  -moz-transition: color 1s ease-out;
-  -o-transition: color 1s ease-out;
-  transition: color 1s ease-out;
+  -webkit-transition: color 1s ease-in-out;
+  -moz-transition: color 1s ease-in-out;
+  -o-transition: color 1s ease-in-out;
+  transition: color 1s ease-in-out;
   &:hover {
     border-radius: 10px;
     color: ${colors.red};
   }
 `;
+
+export const Popupmenu = styled.ul`
+  border: 1px solid ${colors.hover};
+  border-radius: 0.6rem;
+  width: 150px;
+  margin-right: 1.6rem;
+  background-color: white;
+  overflow: hidden;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  padding: 0;
+`;
+
+export const MenuList = styled.li`
+  list-style: none;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-weight: 500;
+  -webkit-transition: background-color 0.5s ease-in-out;
+  -moz-transition: background-color 0.5s ease-in-out;
+  -o-transition: background-color 0.5s ease-in-out;
+  transition: background-color 0.5s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  &:hover {
+    color: white;
+    background-color: ${colors.red};
+  }
+`;
+
+export const ListIconSignin = styled(FiUser)`
+  margin-left: 10px;
+  height: 18px;
+  width: 18px;
+`
+export const ListIconSignup = styled(FiUserPlus)`
+  margin-left: 10px;
+  height: 18px;
+  width: 18px;
+`
 
 export const IntroContainer = styled.main`
   display: flex;
