@@ -2,9 +2,8 @@ import styled from "styled-components";
 // import {Menu2} from "@styled-icons/evaicons-solid/Menu2"
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { BiChevronRight } from "react-icons/bi";
-import {FiUser, FiUserPlus} from "react-icons/fi"
-
-import background from "../assets/background.jpg";
+import { FiUser, FiUserPlus } from "react-icons/fi";
+import { Link as LinkScroll } from "react-scroll";
 
 const colors = {
   primary: "#003049",
@@ -96,12 +95,12 @@ export const ListIconSignin = styled(FiUser)`
   margin-left: 10px;
   height: 18px;
   width: 18px;
-`
+`;
 export const ListIconSignup = styled(FiUserPlus)`
   margin-left: 10px;
   height: 18px;
   width: 18px;
-`
+`;
 
 export const IntroContainer = styled.main`
   display: flex;
@@ -147,7 +146,7 @@ export const IntroDescription = styled.p`
   line-height: 30px;
 `;
 
-export const IntroButton = styled.button`
+export const IntroButton = styled(LinkScroll)`
   color: white;
   font-weight: 600;
   background-color: ${colors.red};
@@ -174,4 +173,13 @@ export const RightArrow = styled(BiChevronRight)`
   height: 1.2rem;
   color: white;
   align-self: center;
+`;
+
+export const CardViewContainer = styled.div`
+  flex: 50%;
+  height: 200px;
+  background-color: aqua;
+  @media (max-width: 767px) {
+    flex: 100%;
+  }
 `;

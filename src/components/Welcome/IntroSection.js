@@ -1,4 +1,6 @@
-import React from "react";
+import React, {useEffect} from "react";
+import AOS from "aos";
+
 import {
   IntroContainer,
   IntroImageContainer,
@@ -14,21 +16,25 @@ import {
 import welcome from "../../assets/welcome.svg";
 
 const IntroSection = () => {
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
+
   return (
     <IntroContainer>
-      <IntroImageContainer>
+      <IntroImageContainer data-aos="fade-right">
         <IntroImage alt="healAssis. home svg" src={welcome} />
       </IntroImageContainer>
       <IntroTextContainer>
-        <IntroHeader>
+        <IntroHeader data-aos="fade-up">
           Welcome, to a new world of modern health-care assistant
         </IntroHeader>
-        <IntroDescription>
+        <IntroDescription data-aos="fade-up">
           Easily and quickly manage all hospital inventories with a single
           system. With a secure and user-friendly UI, you can keep track of your
           patients' medical histories and dosage durations.
         </IntroDescription>
-        <IntroButton>
+        <IntroButton data-aos="fade-up">
             Get Started
             <RightArrow/>
         </IntroButton>
