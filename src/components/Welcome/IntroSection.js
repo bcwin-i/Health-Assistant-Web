@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import AOS from "aos";
 
 import {
@@ -9,7 +9,7 @@ import {
   IntroHeader,
   IntroDescription,
   IntroButton,
-  RightArrow
+  RightArrow,
 } from "../../utils/styles";
 
 //Local imports
@@ -34,9 +34,9 @@ const IntroSection = () => {
           system. With a secure and user-friendly UI, you can keep track of your
           patients' medical histories and dosage durations.
         </IntroDescription>
-        <IntroButton data-aos="fade-up">
-            Get Started
-            <RightArrow/>
+        <IntroButton data-aos="fade-up" to="getStarted" smooth={true} duration={500}>
+          Get Started
+          <RightArrow />
         </IntroButton>
       </IntroTextContainer>
     </IntroContainer>

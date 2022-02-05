@@ -1,5 +1,4 @@
 import styled from "styled-components";
-// import {Menu2} from "@styled-icons/evaicons-solid/Menu2"
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { BiChevronRight } from "react-icons/bi";
 import { FiUser, FiUserPlus } from "react-icons/fi";
@@ -23,13 +22,17 @@ export const LandinPageCover = styled.div`
 `;
 
 export const HeaderContainer = styled.header`
+  position: fixed;
+  top: 0;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-content: center;
   align-items: center;
-  background: none;
+  background-color: white;
   padding: 20px;
+  z-index: 5;
 `;
 
 export const TextLogo = styled.h1`
@@ -70,6 +73,7 @@ export const Popupmenu = styled.ul`
   overflow: hidden;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   padding: 0;
+  z-index: 50;
 `;
 
 export const MenuList = styled.li`
@@ -106,6 +110,8 @@ export const IntroContainer = styled.main`
   display: flex;
   flex-wrap: wrap;
   padding: 2rem;
+  min-height: 100vh;
+  padding-top: 80px;
 `;
 
 export const IntroImageContainer = styled.div`
@@ -159,12 +165,12 @@ export const IntroButton = styled(LinkScroll)`
   margin-top: 4rem;
   font-size: 0.9rem;
   cursor: pointer;
-  -webkit-transition: background-color 1s ease-in-out;
-  -moz-transition: background-color 1s ease-in-out;
-  -o-transition: background-color 1s ease-in-out;
-  transition: background-color 1s ease-in-out;
   &:hover {
     background-color: ${colors.primary};
+    -webkit-transition: background-color 1s ease-in-out;
+    -moz-transition: background-color 1s ease-in-out;
+    -o-transition: background-color 1s ease-in-out;
+    transition: background-color 1s ease-in-out;
   }
 `;
 
@@ -175,11 +181,75 @@ export const RightArrow = styled(BiChevronRight)`
   align-self: center;
 `;
 
-export const CardViewContainer = styled.div`
+export const ServiceContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  background-color: ${colors.hover};
+`;
+
+export const CardWrapper = styled.div`
   flex: 50%;
-  height: 200px;
-  background-color: aqua;
+  padding: 3% 7%;
   @media (max-width: 767px) {
     flex: 100%;
+  }
+`;
+
+export const CardViewContainer = styled.div`
+  background-color: white;
+  height: min-content;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+  &:hover {
+    transform: scale(1.03);
+  }
+`;
+
+export const ServiceImage = styled.img.attrs((props) => ({
+  src: props.src,
+}))`
+  height: 300px;
+  width: 100%;
+  object-fit: contain;
+  overflow: hidden;
+`;
+
+export const ServiceTitle = styled.h1`
+  color: white;
+  font-size: 1.5rem;
+`;
+
+export const SeviceDescription = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 5%;
+  background-color: ${colors.primary};
+  min-height: 210px;
+`;
+
+export const ServiceParagraph = styled.p`
+  color: white;
+  margin: 2% 0px;
+`;
+
+export const ServiceBottom = styled(LinkScroll)`
+  color: ${colors.primary};
+  font-weight: 500;
+  background-color: white;
+  align-self: flex-start;
+  padding: 6px 11px;
+  border: 0;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  margin-top: 1.2rem;
+  cursor: pointer;
+  &:hover {
+    background-color: ${colors.red};
+    color: white;
+    -webkit-transition: background-color 1s ease-in-out;
+    -moz-transition: background-color 1s ease-in-out;
+    -o-transition: background-color 1s ease-in-out;
+    transition: background-color 1s ease-in-out;
   }
 `;

@@ -33,6 +33,7 @@ const Header = () => {
         reposition={true}
         onClickOutside={() => setIsNavPopoverOpen(false)}
         content={<PopoverMenu />}
+        containerStyle={{zIndex: 6}}
       >
         <NavigationButtonContainer
           onClick={() => setIsNavPopoverOpen(!isNavPopoverOpen)}
