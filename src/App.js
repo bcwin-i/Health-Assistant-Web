@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route/*, Link*/ } from "react-router-dom";
 
 //Local imports
 import "./App.css";
@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Welcome />} />
-        <Route path="homepage" element={<Homepage />} />
+        <Route path="/homepage" element={<Homepage />} />
       </Routes>
     </div>
   );

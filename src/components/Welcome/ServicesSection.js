@@ -3,7 +3,6 @@ import AOS from "aos";
 
 //Local imports
 import {
-  IntroContainer,
   CardViewContainer,
   ServiceImage,
   ServiceTitle,
@@ -16,7 +15,7 @@ import {
 import effective from "../../assets/effective.svg";
 import launch from "../../assets/launch.svg";
 
-const ServicesSection = () => {
+const ServicesSection = ({handleScreen}) => {
   useEffect(() => {
     AOS.init({ duration: 2000 });
   }, []);
@@ -25,7 +24,7 @@ const ServicesSection = () => {
     <ServiceContainer id="getStarted">
       <CardWrapper>
         <CardViewContainer>
-          <ServiceImage src={effective} />
+          <ServiceImage src={effective} alt="signin" />
           <SeviceDescription>
             <ServiceTitle>Effectiveness</ServiceTitle>
             <ServiceParagraph>
@@ -33,13 +32,15 @@ const ServicesSection = () => {
               publish all client-related tasks. Interact with clients as quickly
               as possible to learn about their well-being.
             </ServiceParagraph>
-            <ServiceBottom>Sign in</ServiceBottom>
+            <ServiceBottom onClick={() => handleScreen(0)}>
+              Sign in
+            </ServiceBottom>
           </SeviceDescription>
         </CardViewContainer>
       </CardWrapper>
       <CardWrapper>
         <CardViewContainer>
-          <ServiceImage src={launch} />
+          <ServiceImage src={launch} alt="signup" />
           <SeviceDescription>
             <ServiceTitle>Launch</ServiceTitle>
             <ServiceParagraph>
@@ -47,7 +48,9 @@ const ServicesSection = () => {
               your client and inventory management systems. Get going by
               creating an account.
             </ServiceParagraph>
-            <ServiceBottom>Sign up</ServiceBottom>
+            <ServiceBottom onClick={()=> handleScreen(1)}>
+              Sign up
+            </ServiceBottom>
           </SeviceDescription>
         </CardViewContainer>
       </CardWrapper>

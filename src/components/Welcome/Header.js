@@ -38,7 +38,7 @@ const Header = () => {
         <NavigationButtonContainer
           onClick={() => setIsNavPopoverOpen(!isNavPopoverOpen)}
         >
-          <NavigationButton />
+          <NavigationButton aria-label="navigation button"/>
         </NavigationButtonContainer>
       </Popover>
     </HeaderContainer>
