@@ -10,6 +10,7 @@ import {
   IntroDescription,
   IntroButton,
   RightArrow,
+  IntroTitle,
 } from "../../utils/styles";
 
 //Local imports
@@ -21,20 +22,26 @@ const IntroSection = () => {
   }, []);
 
   return (
-    <IntroContainer>
+    <IntroContainer id="about">
       <IntroImageContainer data-aos="fade-right">
         <IntroImage alt="healAssis. home svg" src={welcome} />
       </IntroImageContainer>
       <IntroTextContainer>
+        <IntroTitle data-aos="fade-up">Polyclinic HIMS</IntroTitle>
         <IntroHeader data-aos="fade-up">
-          Welcome, to a new world of modern health-care assistant
+          Welcome, to a new world of modern health-care.
         </IntroHeader>
         <IntroDescription data-aos="fade-up">
           Easily and quickly manage all hospital inventories with a single
           system. With a secure and user-friendly UI, you can keep track of your
           patients' medical histories and dosage durations.
         </IntroDescription>
-        <IntroButton data-aos="fade-up" to="getStarted" smooth={true} duration={500}>
+        <IntroButton
+          data-aos="fade-up"
+          to="getStarted"
+          smooth={true}
+          duration={500}
+        >
           Get Started
           <RightArrow />
         </IntroButton>

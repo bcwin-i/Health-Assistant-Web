@@ -15,7 +15,7 @@ import {
 import effective from "../../assets/effective.svg";
 import launch from "../../assets/launch.svg";
 
-const ServicesSection = ({handleScreen}) => {
+const ServicesSection = ({ handleScreen }) => {
   useEffect(() => {
     AOS.init({ duration: 2000 });
   }, []);
@@ -44,12 +44,15 @@ const ServicesSection = ({handleScreen}) => {
           <SeviceDescription>
             <ServiceTitle>Launch</ServiceTitle>
             <ServiceParagraph>
-              Create a secure account in a few easy steps and take control of
+              {/* Create a secure account in a few easy steps and take control of
               your client and inventory management systems. Get going by
-              creating an account.
+              creating an account. */}
+              Subscribe to stay up to date on new and improved features and
+              functionalities. And our committed team will provide you with the
+              greatest health aide.
             </ServiceParagraph>
-            <ServiceBottom onClick={()=> handleScreen(1)}>
-              Sign up
+            <ServiceBottom onClick={() => handleScreen(1)}>
+              Suscrube
             </ServiceBottom>
           </SeviceDescription>
         </CardViewContainer>

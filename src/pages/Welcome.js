@@ -1,16 +1,23 @@
 import React, { useState } from "react";
 
 //Local imports
-import Header from "../components/Welcome/Header";
+import Header from "../components/Navbar/Header";
 import IntroSection from "../components/Welcome/IntroSection";
 import ServicesSection from "../components/Welcome/ServicesSection";
 import AccessAccount from "../components/Welcome/AccessAccount";
+import Footer from "../components/Footer/Footer";
 
 const Welcome = () => {
-  const [screen, setScreen] = useState(3);
+  const [screen, setScreen] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleScreen = (screen) => {
+    setIsOpen(true);
     setScreen(screen);
+  };
+
+  const closeAccess = () => {
+    setIsOpen(false);
   };
 
   return (
@@ -18,9 +25,13 @@ const Welcome = () => {
       <Header />
       <IntroSection />
       <ServicesSection handleScreen={handleScreen} />
-      {screen !== 3 ? (
-          <AccessAccount screen={screen} handleScreen={handleScreen}/>
-      ) : null}
+      <AccessAccount
+        screen={screen}
+        handleScreen={handleScreen}
+        isOpen={isOpen}
+        closeAccess={closeAccess}
+      />
+      <Footer />
     </>
   );
 };

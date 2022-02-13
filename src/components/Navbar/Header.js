@@ -6,39 +6,27 @@ import {
   TextLogo,
   NavigationButton,
   NavigationButtonContainer,
-  Popupmenu,
-  MenuList,
-  ListIconSignin,
-  ListIconSignup,
 } from "../../utils/styles";
-
-const PopoverMenu = () => (
-  <Popupmenu>
-    <MenuList>Sign in <ListIconSignin/></MenuList>
-    <MenuList>Sign up<ListIconSignup/></MenuList>
-    <MenuList>Contact</MenuList>
-    <MenuList>About</MenuList>
-  </Popupmenu>
-);
+import PopoverNavMenu from "./PopoverMenu";
 
 const Header = () => {
   const [isNavPopoverOpen, setIsNavPopoverOpen] = useState(false);
 
   return (
     <HeaderContainer>
-      <TextLogo>healAssis.</TextLogo>
+      <TextLogo>Health Assis-Madina</TextLogo>
       <Popover
         isOpen={isNavPopoverOpen}
         positions={["bottom"]} // preferred positions by priority
         reposition={true}
         onClickOutside={() => setIsNavPopoverOpen(false)}
-        content={<PopoverMenu />}
-        containerStyle={{zIndex: 6}}
+        content={<PopoverNavMenu />}
+        containerStyle={{ zIndex: 6 }}
       >
         <NavigationButtonContainer
           onClick={() => setIsNavPopoverOpen(!isNavPopoverOpen)}
         >
-          <NavigationButton aria-label="navigation button"/>
+          <NavigationButton aria-label="navigation button" />
         </NavigationButtonContainer>
       </Popover>
     </HeaderContainer>
