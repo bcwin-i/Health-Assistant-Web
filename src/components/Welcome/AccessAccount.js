@@ -1,5 +1,12 @@
 import React, { useState, useCallback } from "react";
-import { useAuth, useAuthState } from "../../context/AuthContext";
+import ClipLoader from "react-spinners/ClipLoader";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
+
+import { getDatabase, ref, set } from "firebase/database";
 
 import {
   AccessaccountContainer,
@@ -7,6 +14,7 @@ import {
   AccessButton,
   AccessButtonsWrap,
   AccessCloseBtn,
+  AccessErrorMessage,
   AccessForgotPassword,
   AccessFormWrapper,
   AccessGoogleButton,
@@ -19,6 +27,9 @@ import {
   AccessTitle,
   AccessTypeImage,
 } from "../../utils/styles";
+
+import { colors } from "../../utils/colors";
+import { useAuthState } from "../../firebase";
 
 const type = [
   {
@@ -44,18 +55,56 @@ const type = [
 const AccessAccount = ({ screen, isOpen, closeAccess }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const { signup } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const { isAuthenticated, setUser } = useAuthState();
 
-  const handleSubmit = async () => {
+  const handleSignin = () => {
+    setLoading(true);
     try {
-      setError("");
-      setLoading(true);
-      console.log("Loading")
-      await signup(email, password);
-    } catch {
-      setError("Failed to create an account");
+      const auth = getAuth();
+      signInWithEmailAndPassword(auth, email, password)
+        .then((e) => {
+          console.log(e);
+          setUser(e.user);
+          // const db = getDatabase();
+          // set(ref(db, "users/" + e.user.uid), {
+          //   name: "Bekoe Kojo Isaac",
+          //   admin: "admin",
+          //   role: "HOD",
+          //   email: e.user.email,
+          //   url: ""
+          // })
+          //   .then((db) => {
+          //     setUser(e.user);
+          //     console.info("Database added: ", db)
+          //     console.info("New detail is: ", isAuthenticated);
+          //   })
+          //   .catch((er) => {
+          //     setError(er);
+          //   });
+        })
+        .catch((e) => {
+          console.error(e);
+          setError("Wrong user credentials.");
+          setLoading(false);
+        });
+      // createUserWithEmailAndPassword(auth, email, password).then((e) => {
+      //   const user = res.user;
+      //   const q = query(collection(db, "users"), where("uid", "==", user.uid));
+      //   const docs = await getDocs(q);
+      //   if (docs.docs.length === 0) {
+      //     await addDoc(collection(db, "users"), {
+      //       uid: user.uid,
+      //       name: user.displayName,
+      //       authProvider: "google",
+      //       email: user.email,
+      //     });
+      //   }
+      // });
+    } catch (e) {
+      console.error("Login failed: ", e);
+      setLoading(false);
     }
   };
 
@@ -89,15 +138,21 @@ const AccessAccount = ({ screen, isOpen, closeAccess }) => {
             <AccessInputPassword type="password" />
           </>
         ) : null} */}
+        {error !== "" ? <AccessErrorMessage>{error}</AccessErrorMessage> : null}
         {screen !== 1 ? (
           <AccessForgotPassword>Forgot Password?</AccessForgotPassword>
         ) : null}
         <AccessButtonsWrap>
-          <AccessButton onClick={() => handleSubmit()}>
-            {type[screen].button}
-          </AccessButton>
+          {loading ? (
+            <ClipLoader loading={true} size={35} color={colors.primary} />
+          ) : (
+            <AccessButton onClick={() => handleSignin()}>
+              {type[screen].button}
+            </AccessButton>
+          )}
           {screen !== 1 ? <AccessGoogleButton /> : null}
         </AccessButtonsWrap>
+
         {screen !== 1 ? (
           <AccessGoogleWraper>
             Or you can {type[screen].action} with your account.

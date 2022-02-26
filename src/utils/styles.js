@@ -29,13 +29,17 @@ export const HeaderContainer = styled.header`
   background-color: white;
   padding: 20px;
   z-index: 5;
+  box-shadow: ${(props) => (props.shadow ? "0 2px 4px 0 rgba(0, 0, 0, 0.1)" : null)};
 `;
 
 export const TextLogo = styled.h1`
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: ${colors.red};
   cursor: pointer;
+  color: ${(props) => (props.color === 1 ? colors.primary : colors.red)};
+  display: flex;
+  align-self: center;
 `;
 
 export const NavigationButtonContainer = styled.button`
@@ -90,11 +94,31 @@ export const MenuList = styled(LinkScroll)`
     background-color: ${colors.red};
   }
 `;
+export const MenuBtn = styled.button`
+  list-style: none;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-weight: 500;
+  -webkit-transition: background-color 0.5s ease-in-out;
+  -moz-transition: background-color 0.5s ease-in-out;
+  -o-transition: background-color 0.5s ease-in-out;
+  transition: background-color 0.5s ease-in-out;
+  display: flex;
+  background: none;
+  border: none;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  &:hover {
+    color: white;
+    background-color: ${colors.red};
+  }
+`;
 
 export const ListIconSignin = styled(FiUser)`
   margin-left: 10px;
-  height: 18px;
-  width: 18px;
+  color: ${colors.primary};
+  font-size: ${(props) => props.size}px;
 `;
 export const ListIconSignup = styled(FiUserPlus)`
   margin-left: 10px;
@@ -359,6 +383,13 @@ export const AccessInputPassword = styled.input`
     outline: none;
     border-bottom: 2px solid ${colors.red};
   }
+`;
+
+export const AccessErrorMessage = styled.p`
+  font-size: 12px;
+  align-self: flex-start;
+  margin-bottom: 10px;
+  color: ${colors.red};
 `;
 
 export const AccessForgotPassword = styled.a`
