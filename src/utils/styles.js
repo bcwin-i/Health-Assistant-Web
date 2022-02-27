@@ -34,12 +34,12 @@ export const HeaderContainer = styled.header`
 
 export const TextLogo = styled.h1`
   color: white;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   color: ${colors.red};
+  font-weight: 600;
   cursor: pointer;
   color: ${(props) => (props.color === 1 ? colors.primary : colors.red)};
   display: flex;
-  align-self: center;
 `;
 
 export const NavigationButtonContainer = styled.button`
@@ -67,7 +67,7 @@ export const NavigationButton = styled(HiOutlineMenuAlt3)`
 export const Popupmenu = styled.ul`
   border: 1px solid ${colors.hover};
   border-radius: 0.6rem;
-  width: 150px;
+  min-width: 150px;
   margin-right: 1.6rem;
   background-color: white;
   overflow: hidden;
