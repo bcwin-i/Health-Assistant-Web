@@ -7,6 +7,7 @@ import { colors } from "../../utils/colors";
 import { AdddApp } from "../../utils/workAreaStyles";
 
 const PatientProfile = ({ selectedUser }) => {
+  
   return selectedUser === null ? (
     <div style={{ display: "flex", flexDirection: "column", width: "100%", paddingTop: 30 }}>
       <GiEmptyHourglass

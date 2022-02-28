@@ -26,13 +26,11 @@ const Header = () => {
           justifyContent: "center",
         }}
       >
-        {isAuthenticated ? (
-          <img
-            src={logo256}
-            style={{ height: 20, width: 20, marginRight: 10 }}
-            alt="healAssis logo"
-          />
-        ) : null}
+        <img
+          src={logo256}
+          style={{ height: 20, width: 20, marginRight: 10 }}
+          alt="healAssis logo"
+        />
         Health Assis-Madina
       </TextLogo>
       <Popover
