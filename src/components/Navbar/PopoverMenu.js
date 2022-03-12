@@ -24,7 +24,7 @@ const PopoverNavMenu = () => {
     get(child(dbRef, `users/${isAuthenticated?.uid}`))
       .then((snapshot) => {
         if (snapshot.exists()) {
-          setUsername(snapshot.val().name);
+          setUsername(snapshot.val().LastName);
         } else {
           console.log("No data available");
         }

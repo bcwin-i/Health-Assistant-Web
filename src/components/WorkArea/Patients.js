@@ -11,22 +11,53 @@ import {
 import { AccessTitle } from "../../utils/styles";
 import PatientAppointmentsTable from "./PatientmentAppointmentTabke";
 import PatientProfile from "./PatientProfileView";
+import { getDatabase, ref, update } from "firebase/database";
 
 const Patients = () => {
   const [selectedUser, setSelectedUser] = useState(null);
+
+  const completedApp = (user, state) => {
+    const db = getDatabase();
+
+    update(ref(db, "customers/" + user), {
+      Completed: state
+    });
+  };
+
   return (
     <PatientsContainer>
       <MdSick size={40} color={colors.primary} />
       <PatientsOverWrapper style={{ marginTop: 10 }}>
-        <ListOfPatients style={{ paddingRight: 8 }}>
-          <AccessTitle style={{ fontWeight: "300", fontSize: 24 }}>
-            Appointments list
-          </AccessTitle>
-          <PatientAppointmentsTable setSelectedUser={setSelectedUser}/>
-        </ListOfPatients>
         <PatientProfileView>
-          <PatientProfile selectedUser={selectedUser}/>
+          <PatientProfile selectedUser={selectedUser} />
         </PatientProfileView>
+        <ListOfPatients style={{ paddingLeft: 8 }}>
+          <AccessTitle
+            style={{ fontWeight: "500", fontSize: 18, marginBottom: -10 }}
+          >
+            Pending Appointments list
+          </AccessTitle>
+          <PatientAppointmentsTable
+            setSelectedUser={setSelectedUser}
+            done={false}
+            completedApp={completedApp}
+          />
+          <AccessTitle
+            style={{
+              fontWeight: "500",
+              fontSize: 18,
+              marginBottom: -10,
+              marginTop: 40,
+            }}
+          >
+            Completed Appointments list
+          </AccessTitle>
+          <PatientAppointmentsTable
+            setSelectedUser={setSelectedUser}
+            done={true}
+            completedApp={completedApp}
+          />
+        </ListOfPatients>
       </PatientsOverWrapper>
     </PatientsContainer>
   );
