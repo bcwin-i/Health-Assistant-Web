@@ -51,8 +51,8 @@ const ServicesSection = ({ handleScreen }) => {
               functionalities. And our committed team will provide you with the
               greatest health aide.
             </ServiceParagraph>
-            <ServiceBottom onClick={() => handleScreen(1)}>
-              Suscrube
+            <ServiceBottom >
+              Health Tips
             </ServiceBottom>
           </SeviceDescription>
         </CardViewContainer>

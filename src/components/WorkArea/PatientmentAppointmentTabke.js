@@ -3,15 +3,18 @@ import { getDatabase, ref, onValue } from "firebase/database";
 
 import "./table.css";
 
-function TableRows({ info, setSelectedUser, addDeletes, changeStatus }) {
-  const [clicked, setClicked] = useState(false);
+function TableRows({ info, setSelectedUser, changeStatus }) {
+  console.info("received: ", info);
   return info.map((userData, index) => {
     const { key, data } = userData;
     const callFucntions = (key, e) => {
       changeStatus(key, e);
-      addDeletes(key, e);
     };
-    // console.log("Completed: ", data.Completed)
+    try {
+      console.log("Comple ", data.Completed);
+    } catch (e) {
+      console.error(e);
+    }
     return (
       <tr
         key={key}
@@ -52,44 +55,33 @@ const PatientAppointmentsTable = ({
   };
 
   const addTableRows = (key, data) => {
-    console.log(key, data);
+    // console.info("Completed No: ", data.Completed)
+    // console.log(key, data);
     setRowsData((rowsData) => [...rowsData, { key: key, data: data }]);
   };
 
   const addComTableRows = (key, data) => {
-    console.log(key, data);
+    console.info("Completed Yes: ", data.Completed);
+    // console.log(key, data);
     setComRowsData((comrowsData) => [...comrowsData, { key: key, data: data }]);
   };
 
-  const deleteTableRows = (index) => {
-    const rows = [...rowsData];
-    rows.splice(index, 1);
-    setRowsData(rows);
-  };
-
-  const handleChange = (index, evnt) => {
-    const { name, value } = evnt.target;
-    const rowsInput = [...rowsData];
-    rowsInput[index][name] = value;
-    setRowsData(rowsInput);
-  };
-
-  const checkedBox = (e) => {
-    setChecked(e.target.checked);
-  };
-
   useEffect(() => {
+    console.log("done: ", done);
     onValue(starCountRef, (snapshot) => {
       setRowsData([]);
       setComRowsData([]);
       snapshot.forEach(function (childSnapshot) {
         let data = childSnapshot.val();
-        console.log("Parent: ", childSnapshot.key);
-        data.Completed
+        // console.log("Parent: ", childSnapshot.key);
+        console.log("Completed output: ", data.Completed);
+        !data.Completed
           ? addTableRows(childSnapshot.key, data)
           : addComTableRows(childSnapshot.key, data);
       });
     });
+    console.log("Not completed size: ", rowsData.length);
+    console.log("Completed size: ", comrowsData.length);
   }, []);
 
   return (
@@ -104,11 +96,19 @@ const PatientAppointmentsTable = ({
         </tr>
       </thead>
       <tbody>
-        {rowsData.length > 0 ? (
+        {!done ? (
+          rowsData.length > 0 ? (
+            <TableRows
+              info={rowsData}
+              completed={completed}
+              setSelectedUser={setSelectedUser}
+              changeStatus={changeStatus}
+            />
+          ) : null
+        ) : comrowsData.length > 0 ? (
           <TableRows
-            info={done ? rowsData : comrowsData}
+            info={comrowsData}
             completed={completed}
-            done={done}
             setSelectedUser={setSelectedUser}
             changeStatus={changeStatus}
           />

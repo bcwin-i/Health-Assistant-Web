@@ -147,7 +147,7 @@ const HOD = () => {
             sendMessage({
               Phone: e.target[6].value,
               LastName: e.target[2].value,
-              FirstName: e.target[2].value,
+              FirstName: e.target[0].value,
               email: patientData.email,
               Password: e.target[2].value + patientData.DOB.split("-")[0],
             });

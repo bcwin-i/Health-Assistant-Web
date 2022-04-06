@@ -95,6 +95,7 @@ const Appontments = () => {
       LastName: patientData.LastName,
       OtherNames: patientData.OtherNames,
       FirstName: patientData.FirstName,
+      Completed: false,
       DOB: patientData.DOB,
       Height: patientData.Height,
       Weight: patientData.Weight,
