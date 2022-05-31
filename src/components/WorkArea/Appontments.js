@@ -1,10 +1,10 @@
+/* library files imported to assist funtionality of this file */
 import React, { useState } from "react";
 import { MdSocialDistance, MdAdd } from "react-icons/md";
 import { BiReset } from "react-icons/bi";
 import { RiSubtractFill } from "react-icons/ri";
 import AnimateHeight from "react-animate-height";
 import { getDatabase, ref, set, off, remove } from "firebase/database";
-
 import { colors } from "../../utils/colors";
 import {
   AccessErrorMessage,
@@ -27,6 +27,7 @@ import {
 import AppointmentsTable from "./AppointmentsTable";
 import { ClipLoader } from "react-spinners";
 
+/*controllers that enable functions operate with CRUD */
 const Appontments = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -114,6 +115,7 @@ const Appontments = () => {
     setLoading(false);
   };
 
+  /*controllers that enable functions operate with CRUD, including some CSS funtions defined */
   return (
     <AppointmentContainer>
       <AppointmentsTopHeader>

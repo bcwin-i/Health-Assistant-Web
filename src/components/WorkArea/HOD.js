@@ -1,3 +1,4 @@
+/* library files imported to assist funtionality of this file */
 import React, { useState } from "react";
 import { BsPeopleFill } from "react-icons/bs";
 import { MdSocialDistance, MdAdd } from "react-icons/md";
@@ -12,6 +13,7 @@ import {
 } from "firebase/auth";
 import dateFormat, { masks } from "dateformat";
 import { initializeApp } from "firebase/app";
+
 
 import { colors } from "../../utils/colors";
 import {
@@ -34,6 +36,7 @@ import { sendSMS } from "../../Calls";
 import EmployeesTable from "./EmployeesTable";
 import { firebaseApp } from "../../firebase";
 
+/*controllers that enable functions operate with CRUD */
 const HOD = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -163,6 +166,7 @@ const HOD = () => {
     setLoading(false);
   };
 
+/*These are CSS funtions defined specifically to the HOD file */
   return (
     <AppointmentContainer>
       <AppointmentsTopHeader>

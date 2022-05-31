@@ -1,3 +1,4 @@
+/* library files imported to assist funtionality of the HOD file */
 import React, { useState, useEffect } from "react";
 import { FcManager, FcBusinesswoman } from "react-icons/fc";
 import dateFormat, { masks } from "dateformat";
@@ -11,6 +12,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { sendSMS } from "../../Calls";
 import { AccessErrorMessage } from "../../utils/styles";
 
+/*controllers that enable functions operate with CRUD */
 const PatientProfile = ({ selectedUser }) => {
   const [isOpen, setIsOpen] = useState(true);
   const [message, setMessage] = useState(false);
@@ -39,6 +41,7 @@ const PatientProfile = ({ selectedUser }) => {
     setIsLoading(false);
   };
 
+  /*CSS functions defined */
   return selectedUser === null ? (
     <div
       style={{

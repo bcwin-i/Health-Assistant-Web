@@ -1,3 +1,4 @@
+/* library files imported to assist funtionality of this file */
 import React, { useEffect } from "react";
 import AOS from "aos";
 
@@ -20,20 +21,22 @@ const ServicesSection = ({ handleScreen }) => {
     AOS.init({ duration: 2000 });
   }, []);
 
+  const openLink =()=> {
+    window.open("https://www.who.int/news")
+  }
+
   return (
     <ServiceContainer id="getStarted">
       <CardWrapper>
         <CardViewContainer>
           <ServiceImage src={effective} alt="signin" />
           <SeviceDescription>
-            <ServiceTitle>Effectiveness</ServiceTitle>
+            <ServiceTitle>WORK</ServiceTitle>
             <ServiceParagraph>
-              Effectiveness With just a few clicks, you can easily manage and
-              publish all client-related tasks. Interact with clients as quickly
-              as possible to learn about their well-being.
+              EASILY MANAGE PATIENT-RELATED TASKS.
             </ServiceParagraph>
             <ServiceBottom onClick={() => handleScreen(0)}>
-              Sign in
+              Sign In
             </ServiceBottom>
           </SeviceDescription>
         </CardViewContainer>
@@ -42,17 +45,13 @@ const ServicesSection = ({ handleScreen }) => {
         <CardViewContainer>
           <ServiceImage src={launch} alt="signup" />
           <SeviceDescription>
-            <ServiceTitle>Launch</ServiceTitle>
+            <ServiceTitle>HEALTH NEWS</ServiceTitle>
             <ServiceParagraph>
-              {/* Create a secure account in a few easy steps and take control of
-              your client and inventory management systems. Get going by
-              creating an account. */}
-              Subscribe to stay up to date on new and improved features and
-              functionalities. And our committed team will provide you with the
-              greatest health aide.
+              {/*t */}
+              STAY UP TO DATE ON HEALTH NEWS
             </ServiceParagraph>
-            <ServiceBottom >
-              Health Tips
+            <ServiceBottom onClick={()=> openLink()}>
+              Stay Health
             </ServiceBottom>
           </SeviceDescription>
         </CardViewContainer>

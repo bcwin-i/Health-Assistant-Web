@@ -1,5 +1,5 @@
+/* library files imported to assist funtionality of the HOD file */
 import React, { useState } from "react";
-
 import { MdSick } from "react-icons/md";
 import { colors } from "../../utils/colors";
 import {
@@ -13,6 +13,7 @@ import PatientAppointmentsTable from "./PatientmentAppointmentTabke";
 import PatientProfile from "./PatientProfileView";
 import { getDatabase, ref, update } from "firebase/database";
 
+/*controllers that enable functions operate with CRUD */
 const Patients = () => {
   const [selectedUser, setSelectedUser] = useState(null);
 
@@ -24,6 +25,7 @@ const Patients = () => {
     });
   };
 
+/*react controllers & CSS funtions defined */
   return (
     <PatientsContainer>
       <MdSick size={40} color={colors.primary} />

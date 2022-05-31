@@ -1,3 +1,4 @@
+/* library files imported to assist funtionality of this file */
 import React, { useEffect, useState } from "react";
 import { getDatabase, ref, onValue } from "firebase/database";
 
@@ -5,6 +6,7 @@ import "./table.css";
 
 function TableRows({ info, allCheck, addDeletes }) {
 
+/*form displayed to user for input*/
   return info.map((userData, index) => {
     const { key, data } = userData;
     return (
@@ -31,7 +33,7 @@ function TableRows({ info, allCheck, addDeletes }) {
     );
   });
 }
-
+ /*controllers that enable functions operate with CRUD */
 const AppointmentsTable = ({addDeletes}) => {
   const db = getDatabase();
   const [checked, setChecked] = useState(false);
@@ -71,6 +73,7 @@ const AppointmentsTable = ({addDeletes}) => {
     });
   }, []);
 
+  /*User input returned in the form to be displayed  */
   return (
     <table className="styled-table">
       <thead>

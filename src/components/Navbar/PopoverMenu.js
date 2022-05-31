@@ -1,9 +1,12 @@
+/* library files imported to assist funtionality of this file */
 import { getAuth, signOut } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { useAuthState } from "../../firebase";
 import { Popupmenu, MenuList, ListIconSignin } from "../../utils/styles";
 import { getDatabase, ref, child, get } from "firebase/database";
 
+
+/*controllers that enable functions operate with CRUD */
 const PopoverNavMenu = () => {
   const { isAuthenticated, setUser } = useAuthState();
   const [username, setUsername] = useState(isAuthenticated?.email);
@@ -33,7 +36,7 @@ const PopoverNavMenu = () => {
         //console.error(error);
       });
   }, []);
-
+/*controllers that enable functions operate with CRUD */
   return (
     <Popupmenu>
       {isAuthenticated ? (
@@ -64,9 +67,7 @@ const PopoverNavMenu = () => {
           <MenuList to="about" smooth={true} duration={500}>
             About
           </MenuList>
-          <MenuList to="footer" smooth={true} duration={500}>
-            Contact
-          </MenuList>
+
         </>
       )}
     </Popupmenu>

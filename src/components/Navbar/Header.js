@@ -1,7 +1,7 @@
+/* library files imported to assist funtionality of this file */
 import React, { useEffect, useState } from "react";
 import { Popover } from "react-tiny-popover";
 import { useAuthState } from "../../firebase";
-
 import {
   HeaderContainer,
   TextLogo,
@@ -12,6 +12,7 @@ import {
 import PopoverNavMenu from "./PopoverMenu";
 import logo256 from "../../assets/logo256.png";
 
+/*controllers that enable functions operate with CRUD */
 const Header = () => {
   const [isNavPopoverOpen, setIsNavPopoverOpen] = useState(false);
   const { isAuthenticated, setUser } = useAuthState();
@@ -31,7 +32,7 @@ const Header = () => {
           style={{ height: 20, width: 20, marginRight: 10 }}
           alt="healAssis logo"
         />
-        Health Assis-Madina
+        Hospital Information Management System -Madina
       </TextLogo>
       <Popover
         isOpen={isNavPopoverOpen}

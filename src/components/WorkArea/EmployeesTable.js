@@ -1,3 +1,4 @@
+/* library files imported to assist funtionality of this file */
 import React, { useEffect, useState } from "react";
 import { getDatabase, ref, onValue } from "firebase/database";
 
@@ -30,7 +31,7 @@ function TableRows({ info, allCheck, addDeletes }) {
     );
   });
 }
-
+/*controllers that enable functions operate with CRUD */
 const EmployeesTable = ({addDeletes}) => {
   const db = getDatabase();
   const [checked, setChecked] = useState(false);

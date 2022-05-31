@@ -1,3 +1,4 @@
+/* library files imported to assist funtionality of this file */
 import { child, get, getDatabase, ref } from "firebase/database";
 import React, { useState, useEffect } from "react";
 import { useAuthState } from "../../firebase";
@@ -13,6 +14,7 @@ import Patients from "./Patients";
 import ClipLoader from "react-spinners/ClipLoader";
 import { colors } from "../../utils/colors";
 
+/*controllers that enable functions operate with CRUD */
 const WorkArea = () => {
   const [section1, setSection1] = useState(true);
   const [section2, setSection2] = useState(false);
@@ -52,6 +54,7 @@ const WorkArea = () => {
       });
   }, []);
 
+  /*controllers that enable functions operate with CRUD */
   return (
     <WorkContainer style={{ justifyContent: "center" }}>
       {!role ? (

@@ -1,8 +1,10 @@
+/* library files imported to assist funtionality of this file */
 import React, { useEffect, useState } from "react";
 import { getDatabase, ref, onValue } from "firebase/database";
 
 import "./table.css";
 
+/*controllers that enable functions operate with CRUD */
 function TableRows({ info, setSelectedUser, changeStatus }) {
   console.info("received: ", info);
   return info.map((userData, index) => {
@@ -38,6 +40,7 @@ function TableRows({ info, setSelectedUser, changeStatus }) {
   });
 }
 
+/*controllers that enable functions operate with CRUD */
 const PatientAppointmentsTable = ({
   completed,
   setSelectedUser,
@@ -84,6 +87,7 @@ const PatientAppointmentsTable = ({
     console.log("Completed size: ", comrowsData.length);
   }, []);
 
+  /*form returned with users input information */
   return (
     <table className="styled-table">
       <thead>

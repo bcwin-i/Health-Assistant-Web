@@ -1,3 +1,4 @@
+/* library files imported to assist funtionality of this file */
 import React, { useState, useCallback } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import {
@@ -7,7 +8,6 @@ import {
 } from "firebase/auth";
 
 import { getDatabase, ref, set } from "firebase/database";
-
 import {
   AccessaccountContainer,
   AccessAccountWrapper,
@@ -31,6 +31,7 @@ import {
 import { colors } from "../../utils/colors";
 import { useAuthState } from "../../firebase";
 
+/*react controllers & CSS funtions defined */
 const type = [
   {
     title: "Sign in",
@@ -108,6 +109,7 @@ const AccessAccount = ({ screen, isOpen, closeAccess }) => {
     }
   };
 
+  /*react controllers & CSS funtions defined */
   return (
     <AccessaccountContainer isOpen={isOpen}>
       {/* <AccessAccountWrapper> */}
@@ -140,7 +142,7 @@ const AccessAccount = ({ screen, isOpen, closeAccess }) => {
         ) : null} */}
         {error !== "" ? <AccessErrorMessage>{error}</AccessErrorMessage> : null}
         {screen !== 1 ? (
-          <AccessForgotPassword>Forgot Password?</AccessForgotPassword>
+          <AccessForgotPassword></AccessForgotPassword>
         ) : null}
         <AccessButtonsWrap>
           {loading ? (
@@ -155,7 +157,7 @@ const AccessAccount = ({ screen, isOpen, closeAccess }) => {
 
         {screen !== 1 ? (
           <AccessGoogleWraper>
-            Or you can {type[screen].action} with your account.
+             {}
           </AccessGoogleWraper>
         ) : null}
       </AccessFormWrapper>
