@@ -13,12 +13,15 @@ import HOD from "./HOD";
 import Patients from "./Patients";
 import ClipLoader from "react-spinners/ClipLoader";
 import { colors } from "../../utils/colors";
+import LabTech from "./LabTech";
+import Pharmacy from "./Pharmacy";
 
 /*controllers that enable functions operate with CRUD */
 const WorkArea = () => {
   const [section1, setSection1] = useState(true);
   const [section2, setSection2] = useState(false);
   const [section3, setSection3] = useState(false);
+  const [section4, setSection4] = useState(false);
   const [role, setRole] = useState(false);
   const { isAuthenticated } = useAuthState();
 
@@ -26,9 +29,11 @@ const WorkArea = () => {
     setSection1(false);
     setSection2(false);
     setSection3(false);
+    setSection4(false);
     if (section === 1) setSection1(true);
-    else if (section === 2) setSection2(true);
-    else setSection3(true);
+    if (section === 2) setSection2(true);
+    if (section === 3) setSection3(true);
+    if (section === 4) setSection4(true);
   };
 
   useEffect(() => {
@@ -37,12 +42,12 @@ const WorkArea = () => {
       .then((snapshot) => {
         if (snapshot.exists()) {
           const role = snapshot.val().Role;
+          console.log("Role: ", role);
           if (role !== "System Admin") {
-            role === "Receptionist"
-              ? changeSection(1)
-              : role === "Doctor"
-              ? changeSection(2)
-              : changeSection(3);
+            if (role === "Receptionist") changeSection(1);
+            if (role === "Doctor") changeSection(2);
+            if (role === "Lab Technician") changeSection(3);
+            if (role === "Pharmacy") changeSection(4);
           }
           setRole(snapshot.val().Role);
         } else {
@@ -66,11 +71,20 @@ const WorkArea = () => {
               <WorkSection section={section1} onClick={() => changeSection(1)}>
                 Appointments
               </WorkSection>
-              <WorkSection section={section2} onClick={() => changeSection(2)}>
+              <WorkSection
+                section={section2}
+                role={role}
+                onClick={() => changeSection(2)}
+              >
                 Patients
               </WorkSection>
               <WorkSection section={section3} onClick={() => changeSection(3)}>
-                Human Resource
+                {/* Human Resource */}
+                Lab Technician
+              </WorkSection>
+              <WorkSection section={section4} onClick={() => changeSection(4)}>
+                {/* Human Resource */}
+                Pharmacy
               </WorkSection>
             </WorkAreaSectionsContainer>
           ) : role === "Receptionist" ? (
@@ -81,16 +95,30 @@ const WorkArea = () => {
             <WorkSection section={section2} onClick={() => changeSection(2)}>
               Patients
             </WorkSection>
-          ) : role === "Human Resource Manager" ? (
+          ) : role === "Lab Technician" /*"Human Resource Manager"*/ ? (
             <WorkSection section={section3} onClick={() => changeSection(3)}>
-              Human Resource
+              {/* Human Resource */}
+              Lab Technician
             </WorkSection>
-          ) : null}
+          ) : (
+            <WorkSection section={section4} onClick={() => changeSection(4)}>
+              {/* Human Resource */}
+              Pharmacy
+            </WorkSection>
+          )}
         </WorkAreaSectionsContainer>
       )}
       {!role ? null : (
         <WorkAreaDisplayField>
-          {section1 ? <Appontments /> : section2 ? <Patients /> : <HOD />}
+          {section1 ? (
+            <Appontments role={role} />
+          ) : section2 ? (
+            <Patients role={role} />
+          ) : section3 ? (
+            <LabTech />
+          ) : (
+            <Pharmacy role={role}/>
+          )}
         </WorkAreaDisplayField>
       )}
     </WorkContainer>

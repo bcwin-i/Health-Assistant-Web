@@ -14,70 +14,49 @@ import PatientProfile from "./PatientProfileView";
 import { getDatabase, ref, update } from "firebase/database";
 
 /*controllers that enable functions operate with CRUD */
-const Patients = ({role}) => {
+const Pharmacy = ({ role }) => {
   const [selectedUser, setSelectedUser] = useState(null);
 
   const completedApp = (user, state) => {
     const db = getDatabase();
 
-    update(ref(db, "customers/" + user), {
-      Completed: state
+    update(ref(db, "pharmacy/" + user), {
+      Completed: state,
     });
   };
 
-/*react controllers & CSS funtions defined */
+  /*react controllers & CSS funtions defined */
   return (
     <PatientsContainer>
       <MdSick size={40} color={colors.primary} />
       <PatientsOverWrapper style={{ marginTop: 10 }}>
         <PatientProfileView>
-          <PatientProfile selectedUser={selectedUser} role={role} />
+          <PatientProfile selectedUser={selectedUser} role={role} lab={false} />
         </PatientProfileView>
         <ListOfPatients style={{ paddingLeft: 8 }}>
           <AccessTitle
             style={{ fontWeight: "500", fontSize: 18, marginBottom: -10 }}
           >
-            Pending Appointments list
+            Patient Prescription List
           </AccessTitle>
           <PatientAppointmentsTable
             setSelectedUser={setSelectedUser}
             done={false}
             completedApp={completedApp}
             role={role}
+            lab={false}
           />
           <AccessTitle
-            style={{
-              fontWeight: "500",
-              fontSize: 18,
-              marginBottom: -10,
-              marginTop: 40,
-            }}
+            style={{ fontWeight: "500", fontSize: 18, marginTop: 20, marginBottom: -10 }}
           >
-            Completed Appointments list
+            Patient Completed Prescription List
           </AccessTitle>
           <PatientAppointmentsTable
             setSelectedUser={setSelectedUser}
             done={true}
             completedApp={completedApp}
             role={role}
-          />
-          <AccessTitle
-            style={{
-              fontWeight: "500",
-              fontSize: 18,
-              marginBottom: -10,
-              marginTop: 40,
-            }}
-          >
-            Test Result list
-          </AccessTitle>
-          <PatientAppointmentsTable
-            setSelectedUser={setSelectedUser}
-            done={true}
-            completedApp={completedApp}
-            role={role}
-            pres={true}
-            lab={true}
+            lab={false}
           />
         </ListOfPatients>
       </PatientsOverWrapper>
@@ -85,4 +64,4 @@ const Patients = ({role}) => {
   );
 };
 
-export default Patients;
+export default Pharmacy;

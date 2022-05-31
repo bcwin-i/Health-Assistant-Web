@@ -14,7 +14,7 @@ function TableRows({ info, allCheck, addDeletes }) {
         <td>
           <input
             type="checkbox"
-            onChange={(e) => addDeletes(key, e.target.checked)}
+            onChange={(e) => addDeletes(key, e.target.checked, {...data, key})}
           />
         </td>
         <td>

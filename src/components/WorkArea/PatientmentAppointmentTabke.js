@@ -1,11 +1,12 @@
 /* library files imported to assist funtionality of this file */
 import React, { useEffect, useState } from "react";
 import { getDatabase, ref, onValue } from "firebase/database";
+import dateFormat, { masks } from "dateformat";
 
 import "./table.css";
 
 /*controllers that enable functions operate with CRUD */
-function TableRows({ info, setSelectedUser, changeStatus }) {
+function TableRows({ info, setSelectedUser, changeStatus, role, pres }) {
   console.info("received: ", info);
   return info.map((userData, index) => {
     const { key, data } = userData;
@@ -20,21 +21,24 @@ function TableRows({ info, setSelectedUser, changeStatus }) {
     return (
       <tr
         key={key}
-        onClick={() => setSelectedUser(data)}
+        onClick={() => setSelectedUser({ ...data, key })}
         id={key}
         style={{ cursor: "pointer" }}
       >
-        <td>
-          <input
-            type="checkbox"
-            checked={data.Completed}
-            onChange={(e) => callFucntions(key, e.target.checked)}
-          />
-        </td>
+        {role !== "Doctor" && pres ? null : (
+          <td>
+            <input
+              type="checkbox"
+              checked={data.Completed}
+              onChange={(e) => callFucntions(key, e.target.checked)}
+            />
+          </td>
+        )}
+
         <td>{data.LastName + " " + data.OtherNames + " " + data.FirstName}</td>
         <td>{data.DOB}</td>
         <td>{data.Gender}</td>
-        <td>{data.AppointmentDate}</td>
+        <td>{dateFormat(data.AppointmentDate, "dddd, mmmm dS, yyyy, h:MM:ss TT")}</td>
       </tr>
     );
   });
@@ -46,10 +50,16 @@ const PatientAppointmentsTable = ({
   setSelectedUser,
   done,
   completedApp,
+  role,
+  lab,
+  pres,
 }) => {
   const db = getDatabase();
   const [checked, setChecked] = useState(false);
-  const starCountRef = ref(db, "customers/");
+  const starCountRef = ref(
+    db,
+    role === "Pharmacy" ? "pharmacy/" : lab ? "prescription/" : "customers/"
+  );
   const [rowsData, setRowsData] = useState([]);
   const [comrowsData, setComRowsData] = useState([]);
 
@@ -70,7 +80,7 @@ const PatientAppointmentsTable = ({
   };
 
   useEffect(() => {
-    console.log("done: ", done);
+    console.log("done: ", pres);
     onValue(starCountRef, (snapshot) => {
       setRowsData([]);
       setComRowsData([]);
@@ -92,21 +102,31 @@ const PatientAppointmentsTable = ({
     <table className="styled-table">
       <thead>
         <tr>
-          <th>Complete</th>
+          {pres && role !== "Doctor" ? null : <th>Complete</th>}
           <th>Name</th>
           <th>Date of Birth</th>
           <th>Gender</th>
-          <th>Appointment Date</th>
+          <th>{role === "Pharmacy" ? "Prescription Date" : "Appointment Date"}</th>
         </tr>
       </thead>
       <tbody>
-        {!done ? (
+        {pres ? (
+          <TableRows
+            info={comrowsData}
+            completed={completed}
+            setSelectedUser={setSelectedUser}
+            changeStatus={changeStatus}
+            role={role}
+            pres={pres}
+          />
+        ) : !done ? (
           rowsData.length > 0 ? (
             <TableRows
               info={rowsData}
               completed={completed}
               setSelectedUser={setSelectedUser}
               changeStatus={changeStatus}
+              role={role}
             />
           ) : null
         ) : comrowsData.length > 0 ? (
@@ -115,6 +135,7 @@ const PatientAppointmentsTable = ({
             completed={completed}
             setSelectedUser={setSelectedUser}
             changeStatus={changeStatus}
+            role={role}
           />
         ) : null}
       </tbody>
