@@ -22,6 +22,7 @@ const WorkArea = () => {
   const [section2, setSection2] = useState(false);
   const [section3, setSection3] = useState(false);
   const [section4, setSection4] = useState(false);
+  const [section5, setSection5] = useState(false);
   const [role, setRole] = useState(false);
   const { isAuthenticated } = useAuthState();
 
@@ -86,6 +87,10 @@ const WorkArea = () => {
                 {/* Human Resource */}
                 Pharmacy
               </WorkSection>
+              <WorkSection section={section5} onClick={() => changeSection(5)}>
+                {/* Human Resource */}
+                Users
+              </WorkSection>
             </WorkAreaSectionsContainer>
           ) : role === "Receptionist" ? (
             <WorkSection section={section1} onClick={() => changeSection(1)}>
@@ -116,8 +121,10 @@ const WorkArea = () => {
             <Patients role={role} />
           ) : section3 ? (
             <LabTech />
+          ) : section4 ? (
+            <Pharmacy role={role} />
           ) : (
-            <Pharmacy role={role}/>
+            <HOD role={role} />
           )}
         </WorkAreaDisplayField>
       )}
